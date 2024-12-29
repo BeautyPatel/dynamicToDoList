@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Seekbar</title>
+    <style>
+        #progressBar {
+            width: 100%;
+            height: 10px;
+            background-color: peru;
+            border-radius: 10px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        #progressLine {
+            width: 0%;
+            height: 10px;
+            background-color: #002765;
+            border-radius: 10px;
+            transition: width 0.2s;
+        }
+
+        #slider {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar">
+        <div id="progressLine"></div>
+    </div>
+    <!-- <input type="range" id="slider" min="0" max="100" value="0"> -->
+
+    <input type="input" id="slider" min="0" max="100" value="0">
+
+    <button onclick="Increase()">Click</button>
+
+    <script>
+        const progressBar = document.getElementById('progressLine');
+        const slider = document.getElementById('slider');
+
+        // Update progress bar width based on slider value
+        // slider.addEventListener('input', () => {
+        //     const sliderValue = slider.value;
+        //     progressBar.style.width = sliderValue + '%';
+        // });
+
+        const Increase = () => {
+            const sliderValue = slider.value;
+            progressBar.style.width = sliderValue + '%';
+            // alert("You must write something");
+        }
+
+
+    </script>
+</body>
+
+</html>

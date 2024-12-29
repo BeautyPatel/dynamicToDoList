@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #3E7C52;
+            padding: 10px;
+        }
+
+        .stats-container {
+            width: 100%;
+            max-width: 540px;
+            background: #FBFCF2;
+            padding: 25px 30px 50px;
+            margin: 100px auto 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 3px 7px #b2b6af;;
+        }
+
+        .stats-container h2 {
+            color: black;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0px;
+        }
+        .stats-container p{
+            color: black;
+        }
+
+        .stats-container h2 img {
+            width: 30px;
+            margin-left: 10px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 30px;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            background: rgb(215, 226, 229);
+            width: 100%;
+            max-width: 500px;
+            margin: 13px auto 20px;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background: black;
+            color: whitesmoke;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 40px;
+        }
+
+        ul li {
+            list-style: none;
+            font-size: 17px;
+            padding: 17px 8px 12px 50px;
+            user-select: none;
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            max-width: 485px;
+            margin: 13px auto 20px;
+            color: #fff;
+        }
+
+        ul li::before {
+            content: " ";
+            position: absolute;
+            height: 33px;
+            width: 33px;
+            border-radius: 50%;
+            background-image: url(images/unchecked-removebg-preview.png);
+            background-size: cover;
+            background-position: center;
+            top: 12px;
+            left: 8px;
+            
+        }
+
+        ul li.checked {
+            color: #352e2e;
+            text-decoration: line-through;
+        }
+
+        ul li.checked::before {
+            background-image: url(images/checked-removebg-preview.png);
+            height: 35px;
+            width: 35px;
+        }
+
+
+        ul li span {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 15px;
+            color: #352e2e;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+        }
+
+        ul li span:hover {
+            background: #ffffff;
+            width: 100px;
+            height: 40px;
+            border-radius: 15px;
+            border-bottom: 3px solid #b2b6af;
+            color: #352e2e;
+            font-size: 16px;
+        }
+
+        .out {
+            border: solid #FBFCF2;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 540px;
+            margin: 13px auto 20px;
+        }
+
+        .stats-number {
+            width: 120px;
+            height: 100px;
+            background-color: #7C8C71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .stats-number p {
+            margin: 0;
+            padding: 0;
+            font-size: inherit;
+            line-height: 1;
+        }
+
+        #progressBar {
+            width: 100%;
+            height: 10px;
+            background-color: #ccd3c8;
+            border-radius: 10px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        #progressLine {
+            width: 0%;
+            height: 10px;
+            background-color: #7C8C71;
+            border-radius: 10px;
+            transition: width 0.2s;
+        }
+
+        #slider {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .todo {
+            width: 100%;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 600px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 20px;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .row {
+                width: 100%;
+                padding: 10px;
+            }
+
+            input {
+                padding: 10px;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            ul li {
+                width: 100%;
+                padding: 10px;
+                font-size: 15px;
+            }
+
+            .out {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            .stats-number {
+                width: 80px;
+                height: 80px;
+                font-size: 18px;
+            }
+
+            #progressBar {
+                margin-top: 20px;
+            }
+
+            #progressLine {
+                height: 8px;
+            }
+        }
+
+        /* Tablet view */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .row {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .out {
+                width: 100%;
+                max-width: 80%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="stats-container">
+            <div class="todo">
+                <h2>To-Do List <img src="images/image.png" alt="" /></h2>
+                <p>Keep it up!</p>
+                <div id="progressBar">
+                    <div id="progressLine"></div>
+                </div>
+            </div>
+            <div class="stats-number">
+                <p id="number">0 </p>
+                <p id="number"> / </p>
+                <p id="total">0</p>
+            </div>
+        </div>
+        <div class="out">
+            <div class="row">
+                <input type="text" id="input-box" placeholder="add Task" />
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-container">
+
+            </ul>
+        </div>
+    </div>
+    <script src="TDL.js"></script>
+</body>
+
+</html>
