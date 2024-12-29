@@ -3,7 +3,6 @@ const values = [];
 
 const number = document.getElementById("number");
 const total = document.getElementById("total");
-
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const progressBar = document.getElementById("progressBar");
